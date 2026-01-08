@@ -55,6 +55,6 @@ public class Main
 
       byte[] returnByteStream = Encoding.ASCII.GetBytes(buf);
 
-      return new TaskOutput(returnByteStream, "Success");
+      return new TaskOutput(buf, "Success");
     }
 }
