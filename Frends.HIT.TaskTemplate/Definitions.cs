@@ -2,28 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 
 // This should be the root namespace of the package
-namespace Frends.HIT.TaskTemplate;
+namespace Frends.HIT.PigelloSIERaindance;
 
-public enum MultipleChoiceOption
-{
-    /// <summary>
-    /// This is the text that is shown in the control panel when hovering over the option
-    /// </summary>
-    [Display(Name = "Option A Display Name")]
-    OptionA,
-    
-    /// <summary>
-    /// This is the text that is shown in the control panel when hovering over the option
-    /// </summary>
-    [Display(Name = "Option B Display Name")]
-    OptionB,
-    
-    /// <summary>
-    /// This is the text that is shown in the control panel when hovering over the option
-    /// </summary>
-    [Display(Name = "Option C Display Name")]
-    OptionC,
-}
+
 
 /// <summary>
 /// This is the information shown about the input group in the control panel
@@ -32,48 +13,66 @@ public enum MultipleChoiceOption
 public class TaskInput
 {
     /// <summary>
-    /// This is the information shown about the parameter in the control panel
+    /// The source SIE file as a byte array
     /// </summary>
-    [Display(Name = "Multiple Choice Option Name")]
-    public MultipleChoiceOption ChoiceOption { get; set; }
-    
+    [DefaultValue("")]
+    [DisplayFormat(DataFormatString = "Text")]
+    public byte[] File { get; set; }
+
     /// <summary>
-    /// This is the information shown about the text parameter in the panel
-    /// If no text is provided, the default value is "ABCDEFG" (also shown in control panel)
+    /// If true the parser will not flag a missing #OMFATTN as an error
     /// </summary>
-    [DefaultValue("ABCDEFG")]
-    [Display(Name = "Text Parameter Name")]
-    public string NameOption { get; set; }
-    
+    //[DisplayFormat(DataFormatString = "Boolean")]
+    [DefaultValue(false)]
+    public bool IgnoreMissingOMFATTNING { get; set; }
+
     /// <summary>
-    /// The information shown about this parameter in the panel.
-    /// With the PasswordPropertyText attribute, the content is hidden by default
+    /// If true #BTRANS (removed voucher rows) will be ignored
     /// </summary>
-    [PasswordPropertyText]
-    public string PasswordOption { get; set; }
-    
+    //[DisplayFormat(DataFormatString = "Boolean")]
+    [DefaultValue(false)]
+    public bool IgnoreBTRANS { get; set; }
+
     /// <summary>
-    /// The default editor box for this parameter will be of the "Expression" type
+    /// If true #RTRANS (added voucher rows) will be ignored
     /// </summary>
-    [DisplayFormat(DataFormatString = "Expression")]
-    public string ExpressionTextOption { get; set; }
-    
+    //[DisplayFormat(DataFormatString = "Boolean")]
+    [DefaultValue(false)]
+    public bool IgnoreRTRANS { get; set; }
+
     /// <summary>
-    /// A boolean option
+    /// If true some errors for missing dates will be ignored
     /// </summary>
-    public bool BooleanOption { get; set; }
-    
+    //[DisplayFormat(DataFormatString = "Boolean")]
+    [DefaultValue(true)]
+    public bool IgnoreMissingDate { get; set; }
+
     /// <summary>
-    /// This field will only be shown if the "ChoiceOption" field is A
+    /// If true don't store values internally. The user has to use the Callback class to get the values. Usefull for large files
     /// </summary>
-    [UIHint(nameof(ChoiceOption), "", MultipleChoiceOption.OptionA, MultipleChoiceOption.OptionB)]
-    public string HiddenTextOption { get; set; }
-    
+    //[DisplayFormat(DataFormatString = "Boolean")]
+    [DefaultValue(false)]
+    public bool StreamValues { get; set; }
+
     /// <summary>
-    /// This field will only be shown if the BooleanOption field is false
+    /// If false then cache all Exceptions in SieDocument.ValidationExceptions
     /// </summary>
-    [UIHint(nameof(BooleanOption), "", false)]
-    public string HiddenBooleanOption { get; set; }
+    //[DisplayFormat(DataFormatString = "Boolean")]
+    [DefaultValue(true)]
+    public bool ThrowErrors { get; set; }
+
+    /// <summary>
+    /// The standard says yyyyMMdd and parser will default to that, but you can change the format to whatever you want
+    /// </summary>
+    [DisplayFormat(DataFormatString = "Text")]
+    [DefaultValue("yyMMdd")]
+    public string DateFormat { get; set; }
+    /// <summary>
+    /// The standard says codepage 437
+    /// </summary>
+    [DisplayFormat(DataFormatString = "Text")]
+    [DefaultValue("437")]
+    public string Encoding { get; set; }  
 }
 
 /// <summary>
@@ -84,9 +83,9 @@ public class TaskInput
 public class TaskOutput
 {
     /// <summary>
-    /// Whether the operation was successful
+    /// The result of the task.
     /// </summary>
-    public bool Success { get; set; }
+    public byte[] Result { get; set; }
     
     /// <summary>
     /// Any messages returned by the task
@@ -94,11 +93,11 @@ public class TaskOutput
     public string Info { get; set; }
 
     public TaskOutput(
-        bool success,
+        byte[] result,
         string info
     )
     {
-        Success = success;
+        Result = result;
         Info = info;
     }
 }
