@@ -1,7 +1,7 @@
 ﻿{
     "Tasks": [
       {
-        "TaskMethod": "Frends.HIT.ParsePigelloSIE.Main.ParsePigelloSIE"
+        "TaskMethod": "Frends.HIT.PigelloSIERaindance.Main.ParsePigelloSIE"
       }
     ]
 }
