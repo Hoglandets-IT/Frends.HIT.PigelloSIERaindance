@@ -2,7 +2,7 @@
 <!-- General information about the task -->
     <PropertyGroup>
         <!--- The name and description of the task -->
-        <PackageId>Frends.HIT.TaskTemplate</PackageId>
+        <PackageId>Frends.HIT.PigelloSIERaindance</PackageId>
         <Description>A template for tasks for the Frends Integration Platform</Description>
         
         <!--- The version of the task. Can remain at 0.0.1, we specify this manually in the build process -->
@@ -13,8 +13,8 @@
         
         <!-- The version control system and url -->
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/Hoglandets-IT/Frends.HIT.TaskTemplate</RepositoryUrl>
-        <PackageProjectUrl>https://github.com/Hoglandets-IT/Frends.HIT.TaskTemplate</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Hoglandets-IT/Frends.HIT.PigelloSIERaindance.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/Hoglandets-IT/Frends.HIT.PigelloSIERaindance.git</PackageProjectUrl>
         
         <!-- The .NET framework settings -->
         <TargetFramework>net8.0</TargetFramework>
