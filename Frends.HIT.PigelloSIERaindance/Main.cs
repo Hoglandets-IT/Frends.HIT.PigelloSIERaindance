@@ -53,8 +53,8 @@ public class Main
               .Aggregate(buf, (current, voucherResult) => current + voucherResult);
       }
 
-      
+      byte[] returnByteStream = Encoding.ASCII.GetBytes(buf);
 
-      return new TaskOutput(buf, "Success");
+      return new TaskOutput(returnByteStream, "Success");
     }
 }

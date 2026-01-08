@@ -85,7 +85,7 @@ public class TaskOutput
     /// <summary>
     /// The result of the task.
     /// </summary>
-    public string Result { get; set; }
+    public byte[] Result { get; set; }
     
     /// <summary>
     /// Any messages returned by the task
@@ -93,7 +93,7 @@ public class TaskOutput
     public string Info { get; set; }
 
     public TaskOutput(
-        string result,
+        byte[] result,
         string info
     )
     {
