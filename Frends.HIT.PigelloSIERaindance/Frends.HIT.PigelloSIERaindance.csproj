@@ -33,7 +33,7 @@
     <ItemGroup>
         <PackageReference Include="jsisie" Version="2.7.0" />
         <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-        <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.1" />
+        <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
     </ItemGroup>
         
     <!-- Specify that the FrendsTaskMetadata.json file is included in the package -->
