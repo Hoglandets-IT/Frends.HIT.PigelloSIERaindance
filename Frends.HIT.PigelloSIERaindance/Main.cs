@@ -7,7 +7,7 @@ using jsiSIE;
 
 namespace Frends.HIT.PigelloSIERaindance;
 
-class Main
+public class Main
 {
     /// <summary>
     /// This is the information shown about the task in the Frends control panel.
@@ -20,14 +20,11 @@ class Main
     {
       Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
    
-
-      //const string fileName = @"/Users/ellie/Documents/Projects/PigelloSieConverter/Docs/MA_Industrifastigheter_AB_20250919.sie";
-
       var sieDoc = new SieDocument()
       {
           ThrowErrors = false, 
           IgnoreMissingOMFATTNING = true,
-          Encoding = Encoding.GetEncoding(437)
+          Encoding = Encoding.GetEncoding(input.Encoding)
       };
       var sieData = new MemoryStream(input.File);
       sieDoc.ReadDocument(sieData);
